@@ -67,6 +67,9 @@ dependencies {
     // Navigation Library
     implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
 
     // Test
     testImplementation(libs.junit)
