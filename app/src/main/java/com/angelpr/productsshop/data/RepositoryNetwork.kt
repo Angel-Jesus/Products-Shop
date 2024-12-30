@@ -11,7 +11,8 @@ class RepositoryNetwork(
     suspend fun getProducts(): List<Product> {
         try {
             val response = retrofit.create(ProductsApiClient::class.java).getProducts()
-            val rawProducts = response.body()?.toMutableList() ?: emptyList()
+            val rawProducts = response.body() ?: emptyList()
+            Log.d("Network", "Products: $rawProducts")
 
             if(rawProducts.isEmpty()) return emptyList()
             val products = fixImageUrlsInProducts(rawProducts)
