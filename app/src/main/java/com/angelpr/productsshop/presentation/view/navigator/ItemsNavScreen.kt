@@ -6,5 +6,12 @@ sealed class ItemsNavScreen {
     @Serializable
     data object Init : ItemsNavScreen()
     @Serializable
-    data object ProductDescription: ItemsNavScreen()
+    data class ProductDescription(
+        val title: String,
+        val price: Long,
+        val description: String,
+        val images: String,
+        val categoryName: String,
+        val categoryImage: String
+    ): ItemsNavScreen()
 }
