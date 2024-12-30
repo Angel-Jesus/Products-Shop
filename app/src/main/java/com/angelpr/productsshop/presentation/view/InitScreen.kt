@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +22,6 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -38,7 +38,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.angelpr.productsshop.data.model.Product
@@ -74,6 +73,15 @@ fun InitScreen(
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            item {
+                HeaderSearchAndOrder(
+                    onSeach = {
+                        productsViewModel.getProducts(FilterBy.Name(it))
+                    },
+                    onResetSearch = { productsViewModel.getProducts(FilterBy.Ascending) }
+                )
+            }
 
             items(uiStateProducts.products) { product ->
                 ItemCardView(
@@ -131,13 +139,60 @@ private fun ItemCardView(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun HeaderSearchAndOrder(
+    onSeach: (String) -> Unit,
+    onResetSearch: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 12.dp, end = 12.dp)
+    ) {
+        var textSearch by remember { mutableStateOf("") }
+
+        SearchBar(
+            query = textSearch,
+            onQueryChange = {
+                textSearch = it
+
+                // Return to order by ascending o descending
+                if (textSearch.isBlank()){
+                    onResetSearch()
+                }
+            },
+            onSearch = { onSeach(textSearch) },
+            active = false,
+            onActiveChange = { },
+            modifier = Modifier
+                .wrapContentHeight(),
+            placeholder = { Text(text = "Search") },
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        onSeach(textSearch)
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = null
+                    )
+                }
+            }
+        ) {
+
+        }
+
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar(
     onAscending: () -> Unit,
-    onDescending : () -> Unit
-){
+    onDescending: () -> Unit
+) {
     var expanded by remember { mutableStateOf(false) }
 
     TopAppBar(
