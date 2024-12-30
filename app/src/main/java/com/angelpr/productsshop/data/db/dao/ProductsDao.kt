@@ -14,6 +14,6 @@ interface ProductsDao {
     fun getProducts(): Flow<List<ProductEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProducts(products: ProductEntity)
+    suspend fun insertProducts(products: List<ProductEntity>)
 
 }

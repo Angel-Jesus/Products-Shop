@@ -1,7 +1,6 @@
 package com.angelpr.productsshop.presentation.view
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -40,10 +39,6 @@ fun InitScreen(
 ){
     val uiStateProducts by productsViewModel.stateProducts.collectAsState()
 
-    LaunchedEffect(Unit) {
-        productsViewModel.getProducts()
-    }
-
     if(uiStateProducts.isLoading){
         LoadingIndicator()
     }
@@ -55,7 +50,6 @@ fun InitScreen(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
