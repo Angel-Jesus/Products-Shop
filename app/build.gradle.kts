@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.angelpr.productsshop"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.angelpr.productsshop"
@@ -49,6 +49,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    // Koin
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.androidx.compose)
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
