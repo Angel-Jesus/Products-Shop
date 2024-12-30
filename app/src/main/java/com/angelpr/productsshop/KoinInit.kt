@@ -3,6 +3,7 @@ package com.angelpr.productsshop
 import android.app.Application
 import com.angelpr.productsshop.di.dataModule
 import com.angelpr.productsshop.di.retrofitBuilderModule
+import com.angelpr.productsshop.di.roomBuilderModule
 import com.angelpr.productsshop.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +16,7 @@ class KoinInit: Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@KoinInit)
-            modules(retrofitBuilderModule, dataModule, viewModelModule)
+            modules(retrofitBuilderModule, roomBuilderModule ,dataModule, viewModelModule)
         }
     }
 }

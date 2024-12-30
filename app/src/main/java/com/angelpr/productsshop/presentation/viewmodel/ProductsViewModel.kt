@@ -12,7 +12,7 @@ class ProductsViewModel(
     fun getProducts(){
         viewModelScope.launch {
             val products = getProductsCase()
-            Log.d("ProductsLog", products.toString())
+            Log.d("ProductsLog", products[0].images[0])
         }
     }
 }

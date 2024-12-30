@@ -1,6 +1,7 @@
-package com.angelpr.productsshop.data.network
+package com.angelpr.productsshop.data
 
 import com.angelpr.productsshop.data.model.Product
+import com.angelpr.productsshop.data.network.ProductsApiClient
 import retrofit2.Retrofit
 
 class RepositoryNetwork(
