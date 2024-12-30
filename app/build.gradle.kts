@@ -64,6 +64,10 @@ dependencies {
     // Room
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    // Navigation Library
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
